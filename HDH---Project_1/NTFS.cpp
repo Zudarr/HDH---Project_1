@@ -2,15 +2,15 @@
 
 void NTFS::read(BYTE* sector)
 {
-	bytesPerSector = ReadIntReverse(sector, "B", 2); //offset B - 2 bytes
-	sectorsPerCluster = ReadIntReverse(sector, "D", 1); //offset D - 1 byte
-	sectorsPerTrack = ReadIntReverse(sector, "18", 2); //offset 18 - 2 byte
-	headsCount = ReadIntReverse(sector, "1A", 2); //offset 1A - 2 bytes
-	sectorStart = ReadIntReverse(sector, "1C", 4); //offset 1C - 4 bytes
-	driveSize = ReadIntReverse(sector, "28", 8); //offset 20 - 4 bytes
-	startCluster = ReadIntReverse(sector, "30", 8); //offset 30 - 8 bytes
+	bytesPerSector = LE_read_reverse(sector, "B", 2); //offset B - 2 bytes
+	sectorsPerCluster = LE_read_reverse(sector, "D", 1); //offset D - 1 byte
+	sectorsPerTrack = LE_read_reverse(sector, "18", 2); //offset 18 - 2 byte
+	headsCount = LE_read_reverse(sector, "1A", 2); //offset 1A - 2 bytes
+	sectorStart = LE_read_reverse(sector, "1C", 4); //offset 1C - 4 bytes
+	driveSize = LE_read_reverse(sector, "28", 8); //offset 20 - 4 bytes
+	startCluster = LE_read_reverse(sector, "30", 8); //offset 30 - 8 bytes
 	mtfSize = pow(2.0, abs(converter(sector, "40", 1)));//offset 40 - 1 byte
-	sectorsPerIndexBuffer = ReadIntReverse(sector, "44", 1); //offset 44 - 1 byte
+	sectorsPerIndexBuffer = LE_read_reverse(sector, "44", 1); //offset 44 - 1 byte
 }
 
 void NTFS::print() const

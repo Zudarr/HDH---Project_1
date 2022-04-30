@@ -7,6 +7,7 @@
 #include <math.h>
 #include <algorithm>
 #include "ReadData.h"
+#include "TxtFile.h"
 using namespace std;
 
 struct NTFS
@@ -26,6 +27,8 @@ struct NTFS
 };
 
 string getBit(int x);
+
+void getNotBit(string bit);
 
 int bitToInt(string bit);
 
